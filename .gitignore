@@ -1,0 +1,9 @@
+#Log files.
+*.log
+
+#Generated LaTeX files.
+*.aux
+*.out
+*.toc
+*.txt
+*.gz
