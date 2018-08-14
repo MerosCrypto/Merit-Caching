@@ -14,14 +14,14 @@
 
 \label{sec:abstract}
 \begin{abstract}
-Proof of Work requires both the current state and extended periods of time to function, which is unacceptable for instant transactions on a cryptocurrency network. If a miner only has to sign a transaction, effectively instant transactions can be achieved. The issue then becomes a lack of reputable verification, as this isn't anymore secure than just removing mining altogether, opening the network up to double spends. This also doesn't declare to which address new coins should go.
+Proof of Work requires both the current state and extended periods of time to function, which is unacceptable for instant transactions on a cryptocurrency network. If a miner only has to sign a transaction, effectively instant transactions can be achieved. The issue then becomes a lack of reputable verification, as effectively random transaction signatures aren't anymore secure than just removing mining altogether, opening the network up to double spends. Also, these signatures don't declare to which addresses new coins should go.
 
 By using Proof of Work to generate Merit, we can cache work, removing the need for the current state. This is accomplished via a separate blockchain that would be mined to generate Merit. This non-transferable Merit would approve transactions on a form of Directed Acyclic Graph. As signing can be done almost instantly, this system allows for the security of Proof of Work to be applied to an effectively instant transaction system.
 \end{abstract}
 
 \label{sec:license}
 \paragraph{License}
-Merit Caching was designed by Luke Parker for use by Ember. Merit Caching's design and whitepaper, but not any implementations or pieces of code included/shipped with this whitepaper, are for the public domain. Any included implementations and code, whether it be pseudocode, compilable code, or otherwise, are licensed under the MIT License, copyright Luke Parker as of 2018.
+Merit Caching was designed by Luke Parker for use by Ember. Merit Caching's design and whitepaper, but not any implementations or pieces of code included/shipped with this whitepaper, are in the public domain. Any included implementations and code, whether it be pseudocode, compilable code, or otherwise, are licensed under the MIT License, copyright Luke Parker as of 2018.
 
 \newpage
 
@@ -33,7 +33,7 @@ Merit Caching was designed by Luke Parker for use by Ember. Merit Caching's desi
 
 \label{sec:1}
 \section{Employed Data Structures}
-Merit Caching depends on a dual storage structure, with one being a blockchain, and the other being an asynchronous structure, such as a Directed Acyclic Graph or Lattice (as used in this paper). This is due to the Lattice being needed for instant transactions, yet a time-proven, secure, and reliable blockchain is the mineable structure. If we mined the Lattice on a transaction-by-transaction level, we'd have to wait to generate the work, as work's security is provided by the time needed to calculate it. Therefore transactions wouldn't be instant.
+Merit Caching depends on a dual-structure database, with one being a blockchain and the other being an asynchronous structure, such as a Directed Acyclic Graph or Lattice (as used in this paper). This is due to the Lattice being needed for instant transactions, yet a time-proven, secure, and reliable blockchain is the mineable structure. If we mined the Lattice on a transaction-by-transaction level, we'd have to wait to generate the work, as work's security is provided by the time needed to calculate it. Therefore transactions wouldn't be instant.
 
 \label{sec:1.1}
 \subsection{Blockchain}
@@ -43,7 +43,7 @@ Merit Caching considers the blockchain with the most accumulated work valid, jus
 
 \label{sec:1.1.1}
 \subsubsection{Blocks}
-In blockchain-based cryptocurrencies, blocks contain transactions. In the Merit Caching algorithm, blocks contain a list of verifications the Lattice has of its transactions. By taking these verifications from the Lattice to the Blockchain \footnote{Blockchain is capitalized as it is used as a proper noun.}, we provide a master overview of the Lattice to be used for syncing and deciding block rewards.
+In blockchain-based cryptocurrencies, blocks contain transactions. In the Merit Caching algorithm, blocks contain a list of verifications from the Lattice that reference transactions. By taking these verifications from the Lattice to the Blockchain \footnote{Blockchain is capitalized as it is used as a proper noun.}, we provide a master overview of the Lattice to be used for syncing and deciding block rewards.
 
 \label{sec:1.2}
 \subsection{Lattice}
@@ -64,38 +64,38 @@ Verifications are created by Merit Holders, and include a transaction hash. Thei
 
 \label{sec:2.1}
 \subsection{Mining}
-Merit Caching involves mining the Blockchain via a Proof of Work algorithm, and any algorithm, from SHA256 to Scrypt to Lyra2 to Argon2, satisfies Merit Caching's needs. Successfully mining a block generates Merit, which is a non-transferable value that decays over time. This is because Merit mined years ago should not still be generating profit so small it's 10 decimals down and clogging the Lattice/Blockchain with its verifications.
+Merit Caching involves mining the Blockchain via a Proof of Work algorithm, and any Proof of Work, algorithm, from SHA256 to Scrypt to Lyra2 to Argon2, satisfies Merit Caching's needs. Successfully mining a block generates Merit, a non-transferable value that decays over time. This is because Merit mined years ago should not be in play when the profit generated is so small it's ten decimals down and clogging the bandwidth with its verifications.
 
 \label{sec:2.2}
 \subsection{Verifying Transactions}
-When a new send block is added to the Lattice, everyone with Merit can sign it or not sign it. If they do, they are putting their Merit behind it. A transaction only becomes valid when it has 50+\% of all Merit behind it. This means if a double spend attempt is broadcasted, and both are at 49.9\% because they were sent out at the same time to different parts of the network, the person with the last 0.2\% will only sign one, stopping the double spend before it's confirmed. If a Merit Holder is malicious and signs a double spend, they will lose all their Merit for this action. The Merit behind the transactions will be recalculated, and one may need to cross the 50\% threshold again.
+When a new send block is added to the Lattice, everyone with Merit can sign it or not sign it. Anyone who signs the block places their Merit behind it. A transaction only becomes valid when it has 50+\% of all Merit behind it. This means if a double spend attempt is broadcast, and both attempts are at 49.9\% because they were sent out at the same time to different parts of the network, the person with the last 0.2\% will only sign one, stopping the double spend before it's confirmed. If a malicious Merit Holder signs a double spend, that Merit Holder will lose all their Merit for this action. The Merit behind the transactions will then be recalculated, and one may need to cross the 50\% threshold again.
 
 \newpage
 
 \label{sec:2.3}
 \subsection{Incentive}
-Merit Holders will earn coins from the Blockchain after a Mining Period. A Mining Period is a set amount of blocks from a transaction's first appearance on the Blockchain to the block where if it still isn't verified, it is orphaned as it will never be verified. When a Mining Period is finalized, Merit Holders will get coins based on:
+Merit Holders earn coins from the blockchain after a Mining Period. A Mining Period is a group of blocks that start on a transaction’s first appearance on the blockchain and end a fixed amount of blocks later. If a transaction isn’t verified within its Mining Period, it is orphaned. At the end of a Mining Period, Merit Holders get coins based on:
 \begin{itemize}
-\item Percent of the Merit placed behind the transaction that was theirs;
-\item Percent of transactions in this period they helped verify.
+\item Percent of Merit they placed behind transactions;
+\item Percent of verified transactions in this period they helped verify.
 \end{itemize}
 
 \newpage
 
 \label{sec:3}
 \section{Attack Vectors}
-The network starts on the Blockchain and feeds back into it. As everything goes through it, Merit Caching successfully avoids most vulnerabilities usually found on a Proof of Stake system, yet keeps the ones found with Proof of Work blockchain systems.
+Merit is earned by mining the blockchain, used to verify transactions on a Lattice, and those verifications feed back into the blockchain. As the blockchain provides a conclusive and final overview, Merit Caching successfully avoids most attack vectors found on a Proof of Stake system, yet faces the same vectors found with Proof of Work blockchain systems.
 
 \label{sec:3.1}
 \subsection{Double Spends}
-As covered above, double spends can be submitted, yet only one will be verified without a malicious Merit Holder. When that happens, the malicious Merit Holder will lose their Merit and the transactions will revert to both being pending or only one being verified. This would be resolved in a matter of seconds, and there's no advantage to the Merit Holder. If it's a high value transaction, and a service wants to be absolutely sure, they can wait for the next block to mined. That said, they only really have to wait a few seconds for the double spend to appear on the same node and be flagged/resolved.
+As covered above, double spends can be submitted, yet only one will be verified without a malicious Merit Holder. When that happens, the malicious Merit Holder loses their Merit and the transactions revert to both transactions pending or one transaction verified. This would be resolved in a matter of seconds, and there's no advantage to the Merit Holder. When there's a high-value transaction, and a service wants to be absolutely sure the transaction was verified, the service can wait for the next block to be mined. That said, the service only really has to wait a few seconds for the double spend to appear on the same node and be flagged/resolved.
 
 \label{sec:3.2}
 \subsection{51\% Attack}
-As the chain follows the longest chain rule, the chain can be rewinded if an attacker has 51\% of the mining power. Since verifications are based on weight created by the Blockchain, editing the Blockchain will alter transactions on a mass scale, potentially not just reverting transactions to pending but invalidating them entirely.
+As the chain follows the most-work rule, the chain can be rewound if an attacker has 51\% of the mining power. Since verifications are based on weight created by the Blockchain, editing the Blockchain alters transactions on a mass scale, potentially not just reverting transactions to pending but invalidating them entirely.
 
 \label{sec:3.3}
 \subsection{51\% Attack Part Two}
-As miners control what verifications are included in a block, any miner who gets 51\% of the mining power can selectively verify transactions.
+Just as blockchain miners who get 51\% of the mining power can selectively mine transactions, anyone who gets 51\% of the Merit can selectively verify transactions.
 
 \end{document}
