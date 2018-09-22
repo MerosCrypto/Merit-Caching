@@ -5,7 +5,7 @@
 \usepackage{extsizes}
 
 \label{sec:title}
-\title{Proposal for a Merit Caching Algorithm}
+\title{Proposal for the Specifications of the Merit Caching Consensus Mechanism}
 \author{Luke Parker}
 
 \begin{document}
@@ -21,7 +21,7 @@ By using Proof of Work to generate Merit, we can cache work, removing the need f
 
 \label{sec:license}
 \paragraph{License}
-Merit Caching was designed by Luke Parker for use by Ember. Merit Caching's design and whitepaper, but not any implementations or pieces of code included/shipped with this whitepaper, are in the public domain. Any included implementations and code, whether it be pseudocode, compilable code, or otherwise, are licensed under the MIT License, copyright Luke Parker as of 2018.
+Merit Caching was designed by Luke Parker for use by Ember. Merit Caching's design and yellow paper, but not any implementations or pieces of code included/shipped with this yellow paper, are in the public domain. Any included implementations and code, whether it be pseudocode, compilable code, or otherwise, are licensed under the MIT License, copyright Luke Parker as of 2018.
 
 \newpage
 
@@ -43,7 +43,7 @@ Merit Caching considers the blockchain with the most accumulated work valid, jus
 
 \label{sec:1.1.1}
 \subsubsection{Blocks}
-In blockchain-based cryptocurrencies, blocks contain transactions. In the Merit Caching algorithm, blocks contain a list of verifications from the Lattice that reference transactions. By taking these verifications from the Lattice to the Blockchain \footnote{Blockchain is capitalized as it is used as a proper noun.}, we provide a master overview of the Lattice to be used for syncing and deciding block rewards.
+In blockchain-based cryptocurrencies, blocks contain transactions. In the Merit Caching mechanism, blocks contain a list of verifications from the Lattice that reference transactions. By taking these verifications from the Lattice to the Blockchain \footnote{Blockchain is capitalized as it is used as a proper noun.}, we provide a master overview of the Lattice to be used for syncing and deciding block rewards.
 
 \label{sec:1.2}
 \subsection{Lattice}
@@ -64,7 +64,7 @@ Verifications are created by Merit Holders, and include a transaction hash. Thei
 
 \label{sec:2.1}
 \subsection{Mining}
-Merit Caching involves mining the Blockchain via a Proof of Work algorithm, and any Proof of Work, algorithm, from SHA256 to Scrypt to Lyra2 to Argon2, satisfies Merit Caching's needs. Successfully mining a block generates Merit, a non-transferable value that decays over time. This is because Merit mined years ago should not be in play when the profit generated is so small it's ten decimals down and clogging the bandwidth with its verifications.
+Merit Caching involves mining the Blockchain via a Proof of Work algorithm, and any Proof of Work algorithm, from SHA256 to Scrypt to Lyra2 to Argon2, satisfies Merit Caching's needs. Successfully mining a block generates Merit, a non-transferable value that decays over time. This is because Merit mined years ago should not be in play when the profit generated is so small it's ten decimals down and clogging the bandwidth with its verifications.
 
 \label{sec:2.2}
 \subsection{Verifying Transactions}
