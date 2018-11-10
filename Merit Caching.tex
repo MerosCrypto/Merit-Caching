@@ -47,11 +47,11 @@ In blockchain-based cryptocurrencies, blocks contain transactions. In the Merit 
 
 \label{sec:1.2}
 \subsection{Lattice}
-A Lattice, or Block Lattice, is a modified form of a Directed Acyclic Graph. Each address has its own blockchain, and only that address can write to it. This allows definitive block ordering, even at high speeds with severe network lag, asynchronous writing to the database (if the accounts are different), and easy comprehension by humans.
+A Lattice, or Block Lattice, is a modified form of a Directed Acyclic Graph. Each address has its own Account (blockchain), and only that address can write to it. This allows definitive Entry (block) ordering, even at high speeds with severe network lag, asynchronous writing to the database (if the addresses are different), and easy comprehension by humans.
 
 \label{sec:1.2.1}
 \subsubsection{Transactions}
-Transactions are composed of two parts: Send and Receive entries. When a user sends cryptocurrency to another user, the sender creates a Send Entry. For this data to be added to the receiver's blockchain safely, as rapid incoming transactions could overwrite the indexes with which the user is trying to send cryptocurrency, and therefore stop the user from spending money, the receiver must create a Receive Entry that declares the index.
+Transactions are composed of two parts: Send and Receive entries. When a user sends cryptocurrency to another user, the sender creates a Send Entry. For this data to be added to the receiver's Account safely, as rapid incoming transactions could overwrite the indexes with which the user is trying to send cryptocurrency, and therefore stop the user from spending money, the receiver must create a Receive Entry that declares the index.
 
 \label{sec:1.2.2}
 \subsubsection{Verifications}
