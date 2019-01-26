@@ -41,7 +41,7 @@ A blockchain is linear chunks of data (blocks), or a linked list. No existing bl
 
 Merit Caching considers the blockchain with the most accumulated work valid, just as most Proof of Work systems do. The greater work represents greater processing power and the chain is therefore the most secure. New blocks are added only if miners can generate a hash which beats the difficulty, a property that exists to require high amounts of work, and is generated based on how often blocks are added. This also allows semi-consistent spacing of blocks.
 
-It should be noted it is possible to not use Proof of Work, but instead use Proof of Stake. However, that creates concerns around the distribution of Merit.
+It should be noted it is theoretically possible to not use Proof of Work, but instead use Proof of Stake. However, this creates concerns around the distribution of Merit, modifies the game theory, and is out of scope for this paper.
 
 \label{sec:1.1.1}
 \subsubsection{Blocks}
@@ -98,7 +98,7 @@ As covered above, double spends can be submitted, yet only one will be verified 
 \subsection{51\% Attack}
 As the chain follows the most-work rule, the chain can be rewound if an attacker has 51\% of the mining power. Since Verifications are based on weight created by the Blockchain, editing the Blockchain alters transactions on a mass scale, potentially not just reverting transactions to pending but invalidating them entirely. That said, a lot of blocks must be reverted if an attacker wants to change the Merit balances significantly, and after the chain is rewound, the data from the Lattice can be resubmitted. If no conflicting data was entered in the meantime, which requires 51\% of the Merit (not the mining power), everything will go back to normal.
 
-This attack changes on an orphan-less chain, as by mining just seven blocks, it's possible to remove and replace an existing verified transaction without any Merit accumulated in advance. By adding a six block checkpoint system, this specific attack, and all 51\% attacks, can be avoided.
+This attack changes on an orphan-less chain, as by mining just seven blocks, it's possible to remove and replace an existing verified transaction without any Merit accumulated in advance. By adding a epoch-length block checkpoint system, this specific attack, and all chain-rewinding attacks, can be avoided.
 
 \label{sec:3.3}
 \subsection{51\% Attack Part Two}
